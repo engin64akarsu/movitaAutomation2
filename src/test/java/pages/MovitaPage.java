@@ -640,7 +640,7 @@ public class MovitaPage {
     @FindBy (xpath ="//a[contains(text(),'Personel Şikayet-Talep-Öneri bildirim')]" )
     public WebElement sikayetTalep;
 
-
+//
 
 }
 
