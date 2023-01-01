@@ -10,6 +10,7 @@ import org.junit.Assert;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import pages.MovitaPage;
@@ -200,5 +201,18 @@ public class MovitaLoginStepDefinition extends ReusableMethods {
         //  movita.sifreDegistir.click();
         ReusableMethods.waitFor(10);
     }
+
+
+    @And("page down to {string}")
+    public void pageDownTo(String element) throws InterruptedException {
+
+                Actions actions = new Actions(Driver.getDriver());
+                actions.sendKeys(Keys.PAGE_DOWN)
+                        .sendKeys(element, Keys.PAGE_DOWN)
+                        .perform();
+                Thread.sleep(10000);
+
+            }
+
 
 }

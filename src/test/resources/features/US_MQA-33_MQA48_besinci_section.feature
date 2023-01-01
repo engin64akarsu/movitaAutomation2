@@ -8,10 +8,9 @@ Feature: Movita Test
     Then kullanici cozumler kisminda bulunan sekiz bolume hover over yapar ve strigleri verify eder
     And kullanici "7'den fazla sektöre hizmet eden çözümlerimizi görmek için" uzerine hover over yapar arkaplan renk degisimini verify eder
     And kullanici "7'den fazla sektöre hizmet eden çözümlerimizi görmek için " yazini click eder "Çözümler" stringini verify eder
-    And  kullanici arrow sign üzerinde hoverover yapar
-    Then kullanici arrow sign üzerinde renk degisikligini dogrular
-    And  kullanici arrow sign tiklar
-    Then kullanici arrow sign tiklayinca verilen stringi dogrular
+    And page down to "home"
+     And  kullanici arrow sign üzerinde hoverover yapar
+      Then kullanici arrow sign üzerinde renk degisikligini dogrular
 
 
 

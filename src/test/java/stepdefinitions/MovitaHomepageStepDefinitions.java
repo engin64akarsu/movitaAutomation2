@@ -18,6 +18,8 @@ import utilities.ConfigurationReader;
 import utilities.Driver;
 import utilities.ReusableMethods;
 
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -704,20 +706,30 @@ public class MovitaHomepageStepDefinitions extends ReusableMethods {
 
     @Then("kullanici arrow sign üzerinde hoverover yapar")
     public void kullanici_arrow_sign_üzerinde_hoverover_yapar() {
-        ReusableMethods.clickWithTimeOut(movita.arrow, 300);
+        ReusableMethods.clickWithTimeOut(movita.arrow, 2);
+
+
     }
 
     @Then("kullanici arrow sign üzerinde renk degisikligini dogrular")
-    public void kullanici_arrow_sign_üzerinde_renk_degisikligini_dogrular() {
+    public void kullanici_arrow_sign_üzerinde_renk_degisikligini_dogrular() throws AWTException, InterruptedException {
         String color_before = movita.arrow.getCssValue("background-color");
         String color_b_hex = Color.fromString(color_before).asHex();
 
+        ReusableMethods.waitForVisibility(movita.arrow, 5);
         ReusableMethods.hover(movita.arrow);
-        ReusableMethods.waitForVisibility(movita.arrow, 500);
+
 
         String color_after = movita.arrow.getCssValue("background-color");
         String color_a_hex = Color.fromString(color_after).asHex();
         Assert.assertNotEquals(color_a_hex, color_b_hex);
+
+
+        Actions actions = new Actions(Driver.getDriver());
+        actions.sendKeys(Keys.PAGE_DOWN)
+                .sendKeys(Keys.PAGE_DOWN)
+                .perform();
+        Thread.sleep(10000);
     }
 
     @Then("kullanici arrow sign tiklar")
@@ -727,7 +739,7 @@ public class MovitaHomepageStepDefinitions extends ReusableMethods {
 
     @Then("kullanici arrow sign tiklayinca verilen stringi dogrular")
     public void kullanici_arrow_sign_tiklayinca_verilen_stringi_dogrular() {
-        ReusableMethods.waitForVisibility(movita.hitapedencozümler, 100);
+        ReusableMethods.waitForVisibility(movita.hitapedencozümler, 3);
         Assert.assertTrue("Tüm Sektörlere Hitap Eden Çözümler", movita.hitapedencozümler.isDisplayed());
 
     }
@@ -775,12 +787,14 @@ public class MovitaHomepageStepDefinitions extends ReusableMethods {
     }
 
     @Then("kullanici {string} yazini click eder {string} stringini verify eder")
-    public void kullanici_yazini_click_eder_stringini_verify_eder(String string, String string2) {
+    public void kullanici_yazini_click_eder_stringini_verify_eder(String string1, String string2) throws AWTException, InterruptedException {
         movita.yediden_yetmise_clk.click();
         Assert.assertTrue(movita.yediden_yetmise_string.isDisplayed());
-        movita.anasayfa.click();
+
+
 
     }
+
 
     @Given("kullanici movita sayfasına gider")
     public void kullanici_movita_sayfasına_gider() {
